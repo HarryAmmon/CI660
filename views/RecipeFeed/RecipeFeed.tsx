@@ -1,10 +1,16 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { Text } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
+import { RecipeSummary } from "../../components";
 
 export const RecipeFeed: React.FC = () => {
   return (
-    <View>
-      <Text>Recipe Feed</Text>
-    </View>
+    <ScrollView>
+      <RecipeSummary />
+      <RecipeSummary />
+      <RecipeSummary />
+      <RecipeSummary />
+      <RecipeSummary />
+    </ScrollView>
   );
 };
