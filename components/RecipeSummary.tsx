@@ -1,18 +1,24 @@
 import React, { useState } from "react";
-import { Card, Title } from "react-native-paper";
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { Card } from "react-native-paper";
+import { RecipeSummaryFields } from "../types/RecipeSummaryFields";
 
-export const RecipeSummary = () => {
-  const [showSummary, setShowSummary] = useState(false);
+export interface RecipeSummaryProps {
+  item: RecipeSummaryFields;
+  index: number;
+}
+
+export const RecipeSummary: React.FC<RecipeSummaryProps> = ({
+  item,
+  index,
+}) => {
   return (
-    <Card onPress={() => setShowSummary((showSummary) => !showSummary)}>
+    <Card>
       <Card.Cover
         source={{
-          uri: "https://spoonacular.com/recipeImages/660701-556x370.jpg",
+          uri: item.image,
         }}
       />
-      <Card.Title title="Recipe Summary" />
-      {showSummary ? <Text>showing this text</Text> : <></>}
+      <Card.Title title={item.title} />
     </Card>
   );
 };

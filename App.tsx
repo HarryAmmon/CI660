@@ -15,10 +15,14 @@ import {
 import { Text } from "react-native";
 import { firebase } from "./firebase/config";
 import { LogBox } from "react-native";
-import { LogoutButton } from "./components";
 import { AuthContext } from "./services/AuthContext";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
+import axios from "axios";
+import { RECIPE_API_KEY } from "@env";
+
+axios.defaults.baseURL = "https://api.spoonacular.com/";
+axios.defaults.params = {};
+axios.defaults.params["apiKey"] = RECIPE_API_KEY;
 
 LogBox.ignoreLogs(["Setting a timer"]);
 export enum AppScreens {
