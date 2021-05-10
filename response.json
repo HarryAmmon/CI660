@@ -1,0 +1,355 @@
+{
+    "vegetarian": true,
+    "vegan": false,
+    "glutenFree": true,
+    "dairyFree": false,
+    "veryHealthy": false,
+    "cheap": false,
+    "veryPopular": false,
+    "sustainable": false,
+    "weightWatcherSmartPoints": 18,
+    "gaps": "no",
+    "lowFodmap": false,
+    "aggregateLikes": 56,
+    "spoonacularScore": 77.0,
+    "healthScore": 17.0,
+    "creditsText": "Afrolems",
+    "license": "CC BY 4.0",
+    "sourceName": "Afrolems",
+    "pricePerServing": 120.88,
+    "extendedIngredients": [
+        {
+            "id": 1001,
+            "aisle": "Milk, Eggs, Other Dairy",
+            "image": "butter-sliced.jpg",
+            "consistency": "solid",
+            "name": "butter",
+            "nameClean": "butter",
+            "original": "1.5 Tablespoons of melted butter",
+            "originalString": "1.5 Tablespoons of melted butter",
+            "originalName": "melted butter",
+            "amount": 1.5,
+            "unit": "Tablespoons",
+            "meta": [
+                "melted"
+            ],
+            "metaInformation": [
+                "melted"
+            ],
+            "measures": {
+                "us": {
+                    "amount": 1.5,
+                    "unitShort": "Tbsps",
+                    "unitLong": "Tbsps"
+                },
+                "metric": {
+                    "amount": 1.5,
+                    "unitShort": "Tbsps",
+                    "unitLong": "Tbsps"
+                }
+            }
+        },
+        {
+            "id": 2009,
+            "aisle": "Spices and Seasonings",
+            "image": "chili-powder.jpg",
+            "consistency": "solid",
+            "name": "chili powder",
+            "nameClean": "chili powder",
+            "original": "1 teaspoon of Chili powder",
+            "originalString": "1 teaspoon of Chili powder",
+            "originalName": "Chili powder",
+            "amount": 1.0,
+            "unit": "teaspoon",
+            "meta": [],
+            "metaInformation": [],
+            "measures": {
+                "us": {
+                    "amount": 1.0,
+                    "unitShort": "tsp",
+                    "unitLong": "teaspoon"
+                },
+                "metric": {
+                    "amount": 1.0,
+                    "unitShort": "tsp",
+                    "unitLong": "teaspoon"
+                }
+            }
+        },
+        {
+            "id": 11215,
+            "aisle": "Produce",
+            "image": "garlic.png",
+            "consistency": "solid",
+            "name": "garlic",
+            "nameClean": "garlic",
+            "original": "2 cloves of garlic",
+            "originalString": "2 cloves of garlic",
+            "originalName": "garlic",
+            "amount": 2.0,
+            "unit": "cloves",
+            "meta": [],
+            "metaInformation": [],
+            "measures": {
+                "us": {
+                    "amount": 2.0,
+                    "unitShort": "cloves",
+                    "unitLong": "cloves"
+                },
+                "metric": {
+                    "amount": 2.0,
+                    "unitShort": "cloves",
+                    "unitLong": "cloves"
+                }
+            }
+        },
+        {
+            "id": 10014412,
+            "aisle": "Frozen",
+            "image": "ice-cubes.png",
+            "consistency": "solid",
+            "name": "ice cubes",
+            "nameClean": "ice",
+            "original": "Seasoning cubes",
+            "originalString": "Seasoning cubes",
+            "originalName": "Seasoning",
+            "amount": 1.0,
+            "unit": "cubes",
+            "meta": [],
+            "metaInformation": [],
+            "measures": {
+                "us": {
+                    "amount": 1.0,
+                    "unitShort": "cubes",
+                    "unitLong": "cube"
+                },
+                "metric": {
+                    "amount": 1.0,
+                    "unitShort": "cubes",
+                    "unitLong": "cube"
+                }
+            }
+        },
+        {
+            "id": 9152,
+            "aisle": "Produce",
+            "image": "lemon-juice.jpg",
+            "consistency": "liquid",
+            "name": "lemon juice",
+            "nameClean": "lemon juice",
+            "original": "1.5 teaspoons of Lemon Juice",
+            "originalString": "1.5 teaspoons of Lemon Juice",
+            "originalName": "Lemon Juice",
+            "amount": 1.5,
+            "unit": "teaspoons",
+            "meta": [],
+            "metaInformation": [],
+            "measures": {
+                "us": {
+                    "amount": 1.5,
+                    "unitShort": "tsps",
+                    "unitLong": "teaspoons"
+                },
+                "metric": {
+                    "amount": 1.5,
+                    "unitShort": "tsps",
+                    "unitLong": "teaspoons"
+                }
+            }
+        },
+        {
+            "id": 20444,
+            "aisle": "Pasta and Rice",
+            "image": "uncooked-white-rice.png",
+            "consistency": "solid",
+            "name": "rice",
+            "nameClean": "rice",
+            "original": "1.5 cups of Rice",
+            "originalString": "1.5 cups of Rice",
+            "originalName": "Rice",
+            "amount": 1.5,
+            "unit": "cups",
+            "meta": [],
+            "metaInformation": [],
+            "measures": {
+                "us": {
+                    "amount": 1.5,
+                    "unitShort": "cups",
+                    "unitLong": "cups"
+                },
+                "metric": {
+                    "amount": 354.882,
+                    "unitShort": "ml",
+                    "unitLong": "milliliters"
+                }
+            }
+        },
+        {
+            "id": 10011298,
+            "aisle": "Produce",
+            "image": "root-vegetables.png",
+            "consistency": "solid",
+            "name": "root vegetables",
+            "nameClean": "root vegetable",
+            "original": "2 cups of chopped green vegetables (Spinach or Ugwu)",
+            "originalString": "2 cups of chopped green vegetables (Spinach or Ugwu)",
+            "originalName": "chopped green vegetables (Spinach or Ugwu)",
+            "amount": 2.0,
+            "unit": "cups",
+            "meta": [
+                "green",
+                "chopped",
+                "(Spinach or Ugwu)"
+            ],
+            "metaInformation": [
+                "green",
+                "chopped",
+                "(Spinach or Ugwu)"
+            ],
+            "measures": {
+                "us": {
+                    "amount": 2.0,
+                    "unitShort": "cups",
+                    "unitLong": "cups"
+                },
+                "metric": {
+                    "amount": 473.176,
+                    "unitShort": "ml",
+                    "unitLong": "milliliters"
+                }
+            }
+        }
+    ],
+    "id": 716377,
+    "title": "Vegetable Rice",
+    "readyInMinutes": 45,
+    "servings": 2,
+    "sourceUrl": "http://www.afrolems.com/2016/02/16/vegetable-rice/",
+    "image": "https://spoonacular.com/recipeImages/716377-556x370.jpg",
+    "imageType": "jpg",
+    "summary": "Vegetable Rice might be just the main course you are searching for. This recipe serves 2 and costs $1.39 per serving. One serving contains <b>706 calories</b>, <b>16g of protein</b>, and <b>11g of fat</b>. 56 people have made this recipe and would make it again. It is a good option if you're following a <b>gluten free and vegetarian</b> diet. From preparation to the plate, this recipe takes roughly <b>45 minutes</b>. If you have butter, chili powder, seasoning cubes, and a few other ingredients on hand, you can make it. To use up the lemon juice you could follow this main course with the <a href=\"https://spoonacular.com/recipes/lemon-shortbread-cookies-with-lemon-icing-a-tribute-to-aunt-roxanne-487814\">Lemon Shortbread Cookies with Lemon Icing {A Tribute to Aunt Roxanne}</a> as a dessert. All things considered, we decided this recipe <b>deserves a spoonacular score of 85%</b>. This score is spectacular. Similar recipes include <a href=\"https://spoonacular.com/recipes/wild-rice-and-brown-rice-cakes-with-roasted-vegetable-rag-186690\">Wild Rice and Brown Rice Cakes with Roasted Vegetable Ragù</a>, <a href=\"https://spoonacular.com/recipes/vegetable-rice-pilaf-in-the-rice-cooker-456334\">Vegetable Rice Pilaf in the Rice Cooker</a>, and <a href=\"https://spoonacular.com/recipes/veg-fried-rice-how-to-make-vegetable-fried-rice-rice-s-487457\">veg fried rice , how to make vegetable fried rice | rice s</a>.",
+    "cuisines": [],
+    "dishTypes": [
+        "side dish"
+    ],
+    "diets": [
+        "gluten free",
+        "lacto ovo vegetarian"
+    ],
+    "occasions": [],
+    "winePairing": {},
+    "instructions": "Wash and bring to boil your rice for about 10 minutes.Chop your green vegetables and set aside. Strain the water from the rice and reduce the heat. Add your vegetables, butter, lemon juice and chili powder. Chop your garlic and add to the pot of rice with your seasoning cubes. Allow steaming on low heat till the rice is soft. Serve your vegetable rice hot with any protein of your choice. ",
+    "analyzedInstructions": [
+        {
+            "name": "",
+            "steps": [
+                {
+                    "number": 1,
+                    "step": "Wash and bring to boil your rice for about 10 minutes.Chop your green vegetables and set aside. Strain the water from the rice and reduce the heat.",
+                    "ingredients": [
+                        {
+                            "id": 11583,
+                            "name": "vegetable",
+                            "localizedName": "vegetable",
+                            "image": "mixed-vegetables.png"
+                        },
+                        {
+                            "id": 14412,
+                            "name": "water",
+                            "localizedName": "water",
+                            "image": "water.png"
+                        },
+                        {
+                            "id": 20444,
+                            "name": "rice",
+                            "localizedName": "rice",
+                            "image": "uncooked-white-rice.png"
+                        }
+                    ],
+                    "equipment": [],
+                    "length": {
+                        "number": 10,
+                        "unit": "minutes"
+                    }
+                },
+                {
+                    "number": 2,
+                    "step": "Add your vegetables, butter, lemon juice and chili powder. Chop your garlic and add to the pot of rice with your seasoning cubes. Allow steaming on low heat till the rice is soft. ",
+                    "ingredients": [
+                        {
+                            "id": 0,
+                            "name": "seasoning cube",
+                            "localizedName": "seasoning cube",
+                            "image": "stock-cube.jpg"
+                        },
+                        {
+                            "id": 2009,
+                            "name": "chili powder",
+                            "localizedName": "chili powder",
+                            "image": "chili-powder.jpg"
+                        },
+                        {
+                            "id": 9152,
+                            "name": "lemon juice",
+                            "localizedName": "lemon juice",
+                            "image": "lemon-juice.jpg"
+                        },
+                        {
+                            "id": 11583,
+                            "name": "vegetable",
+                            "localizedName": "vegetable",
+                            "image": "mixed-vegetables.png"
+                        },
+                        {
+                            "id": 1001,
+                            "name": "butter",
+                            "localizedName": "butter",
+                            "image": "butter-sliced.jpg"
+                        },
+                        {
+                            "id": 11215,
+                            "name": "garlic",
+                            "localizedName": "garlic",
+                            "image": "garlic.png"
+                        },
+                        {
+                            "id": 20444,
+                            "name": "rice",
+                            "localizedName": "rice",
+                            "image": "uncooked-white-rice.png"
+                        }
+                    ],
+                    "equipment": [
+                        {
+                            "id": 404752,
+                            "name": "pot",
+                            "localizedName": "pot",
+                            "image": "stock-pot.jpg"
+                        }
+                    ]
+                },
+                {
+                    "number": 3,
+                    "step": "Serve your vegetable rice hot with any protein of your choice. ",
+                    "ingredients": [
+                        {
+                            "id": 11583,
+                            "name": "vegetable",
+                            "localizedName": "vegetable",
+                            "image": "mixed-vegetables.png"
+                        },
+                        {
+                            "id": 20444,
+                            "name": "rice",
+                            "localizedName": "rice",
+                            "image": "uncooked-white-rice.png"
+                        }
+                    ],
+                    "equipment": []
+                }
+            ]
+        }
+    ],
+    "originalId": null,
+    "spoonacularSourceUrl": "https://spoonacular.com/vegetable-rice-716377"
+}

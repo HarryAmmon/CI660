@@ -9,12 +9,21 @@ import {
   LoginProps,
   HomeProps,
   RegistrationProps,
+  RecipeFeedProps,
+  RecipeFeedTab,
 } from "./views";
 import { Text } from "react-native";
 import { firebase } from "./firebase/config";
 import { LogBox } from "react-native";
-import { LogoutButton } from "./components";
 import { AuthContext } from "./services/AuthContext";
+import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
+import axios from "axios";
+import { RECIPE_API_KEY } from "@env";
+
+axios.defaults.baseURL = "https://api.spoonacular.com/";
+axios.defaults.params = {};
+axios.defaults.params["apiKey"] = RECIPE_API_KEY;
+RECIPE_API_KEY;
 
 LogBox.ignoreLogs(["Setting a timer"]);
 export enum AppScreens {
@@ -24,12 +33,17 @@ export enum AppScreens {
 }
 
 export type StackParamsList = {
-  Home: HomeProps;
   Login: LoginProps;
   Registration: RegistrationProps;
 };
 
+export type TabParamsList = {
+  Home: HomeProps;
+  Feed: RecipeFeedProps;
+};
+
 const Stack = createStackNavigator<StackParamsList>();
+const Tab = createMaterialBottomTabNavigator<TabParamsList>();
 
 export default function App() {
   const [loading, setLoading] = useState(true);
@@ -39,6 +53,7 @@ export default function App() {
 
   useEffect(() => {
     const usersRef = firebase.default.firestore().collection("users");
+    console.log("Application running");
     firebase.default.auth().onAuthStateChanged((user) => {
       if (user) {
         usersRef
@@ -65,23 +80,17 @@ export default function App() {
   return (
     <NavigationContainer>
       <AuthContext.Provider value={{ User: user, SetUser: setUser }}>
-        <Stack.Navigator>
-          {user ? (
-            <Stack.Screen
-              name="Home"
-              options={{
-                headerRight: () => <LogoutButton />,
-              }}
-            >
-              {(props) => <Home {...props} User={user} />}
-            </Stack.Screen>
-          ) : (
-            <>
-              <Stack.Screen name="Login" component={Login} />
-              <Stack.Screen name="Registration" component={Registration} />
-            </>
-          )}
-        </Stack.Navigator>
+        {user ? (
+          <Tab.Navigator initialRouteName="Feed">
+            <Tab.Screen name="Home">{() => <Home User={user} />}</Tab.Screen>
+            <Tab.Screen name="Feed">{(props) => <RecipeFeedTab />}</Tab.Screen>
+          </Tab.Navigator>
+        ) : (
+          <Stack.Navigator initialRouteName="Login">
+            <Stack.Screen name="Login" component={Login} />
+            <Stack.Screen name="Registration" component={Registration} />
+          </Stack.Navigator>
+        )}
       </AuthContext.Provider>
     </NavigationContainer>
   );
