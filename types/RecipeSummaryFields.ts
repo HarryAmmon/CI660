@@ -3,4 +3,5 @@ export interface RecipeSummaryFields {
   title: string;
   summary: string;
   image: string;
+  imageType: string;
 }

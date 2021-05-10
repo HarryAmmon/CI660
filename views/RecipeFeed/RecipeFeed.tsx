@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import React, { useEffect, useState } from "react";
 import { FlatList, Text } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
@@ -15,8 +15,8 @@ export const RecipeFeed: React.FC = () => {
       .then((response) => {
         setRecipes(response.data.recipes);
       })
-      .catch((error) => {
-        console.log(error);
+      .catch((error: AxiosError) => {
+        console.log(error.toJSON());
         console.log("err");
       });
   };
@@ -34,7 +34,9 @@ export const RecipeFeed: React.FC = () => {
   return (
     <FlatList
       data={recipes}
-      renderItem={RecipeSummary}
+      renderItem={({ item, index, separators }) => (
+        <RecipeSummary Recipe={item} key={index} />
+      )}
       keyExtractor={(item) => item.id.toString()}
       onRefresh={refreshList}
       refreshing={refreshing}

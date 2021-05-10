@@ -1,24 +1,24 @@
 import React, { useState } from "react";
 import { Card } from "react-native-paper";
 import { RecipeSummaryFields } from "../types/RecipeSummaryFields";
+import { useNavigation } from "@react-navigation/native";
+import { RecipeFeedScreens, RecipeFeedStackViews } from "../views";
+import { StackNavigationProp } from "@react-navigation/stack";
 
 export interface RecipeSummaryProps {
-  item: RecipeSummaryFields;
-  index: number;
+  Recipe: RecipeSummaryFields;
 }
 
-export const RecipeSummary: React.FC<RecipeSummaryProps> = ({
-  item,
-  index,
-}) => {
+export const RecipeSummary: React.FC<RecipeSummaryProps> = ({ Recipe }) => {
+  const navigator = useNavigation();
   return (
-    <Card>
+    <Card onPress={() => navigator.navigate("Details", { id: Recipe.id })}>
       <Card.Cover
         source={{
-          uri: item.image,
+          uri: Recipe.image,
         }}
       />
-      <Card.Title title={item.title} />
+      <Card.Title title={Recipe.title} titleNumberOfLines={2} />
     </Card>
   );
 };

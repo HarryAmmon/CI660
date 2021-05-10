@@ -23,6 +23,7 @@ import { RECIPE_API_KEY } from "@env";
 axios.defaults.baseURL = "https://api.spoonacular.com/";
 axios.defaults.params = {};
 axios.defaults.params["apiKey"] = RECIPE_API_KEY;
+RECIPE_API_KEY;
 
 LogBox.ignoreLogs(["Setting a timer"]);
 export enum AppScreens {
@@ -80,7 +81,7 @@ export default function App() {
     <NavigationContainer>
       <AuthContext.Provider value={{ User: user, SetUser: setUser }}>
         {user ? (
-          <Tab.Navigator initialRouteName="Home">
+          <Tab.Navigator initialRouteName="Feed">
             <Tab.Screen name="Home">{() => <Home User={user} />}</Tab.Screen>
             <Tab.Screen name="Feed">{(props) => <RecipeFeedTab />}</Tab.Screen>
           </Tab.Navigator>
