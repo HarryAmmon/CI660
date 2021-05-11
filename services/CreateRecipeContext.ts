@@ -1,0 +1,31 @@
+import { createContext } from "react";
+import { CreateRecipeContextFields } from "../types/CreateRecipeContext";
+
+export const CreateRecipeContext = createContext<CreateRecipeContextFields>({
+  title: "",
+  analyzedInstructions: [],
+  cheap: false,
+  dairyFree: false,
+  glutenFree: false,
+  id: -1,
+  extendedIngredients: [],
+  image: "",
+  imageType: "",
+  vegan: false,
+  vegetarian: false,
+  veryHealthy: false,
+  veryPopular: false,
+  setAnalyzedInstructions: () => {},
+  setCheap: () => {},
+  setDairyFree: () => {},
+  setExtendedIngredients: () => {},
+  setGlutenFree: () => {},
+  setHealthy: () => {},
+  setPopular: () => {},
+  setSustainable: () => {},
+  setVegan: () => {},
+  setVegetarian: () => {},
+  sustainable: false,
+  setId: () => {},
+  setTitle: () => {},
+});
