@@ -1,6 +1,12 @@
 import axios from "axios";
-import React, { useEffect, useLayoutEffect, useState } from "react";
-import { ActivityIndicator, Card, Colors, Button } from "react-native-paper";
+import React, {
+  useContext,
+  useEffect,
+  useLayoutEffect,
+  useReducer,
+  useState,
+} from "react";
+import { ActivityIndicator, Card, Colors, Snackbar } from "react-native-paper";
 import { RecipeDetailsFields } from "../../types/RecipeDetailsFields";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import {
@@ -8,6 +14,7 @@ import {
   RecipeIngredients,
   RecipeIngredientsProps,
   RecipeMethod,
+  RecipeMethodsProps,
 } from "../../components";
 import { View } from "react-native";
 import { StackNavigationProp } from "@react-navigation/stack";
@@ -15,6 +22,11 @@ import {
   RecipeFeedScreens,
   RecipeFeedStackViews,
 } from "../RecipeFeedTab/RecipeFeedTab";
+import { SaveRecipeButton } from "../../components/buttons/SaveRecipeButton";
+import { RecipeSummaryFields } from "../../types/RecipeSummaryFields";
+import { AuthContext } from "../../services/AuthContext";
+import { firebase } from "../../firebase/config";
+import { RecipeDetailsReducer } from "./services/RecipeDetailsReducer";
 
 export interface RecipeDetailsProps {
   id: string;
@@ -22,6 +34,7 @@ export interface RecipeDetailsProps {
     RecipeFeedStackViews,
     RecipeFeedScreens.Details
   >;
+  Firestore: boolean;
 }
 
 export enum RecipeDetailScreens {
@@ -31,31 +44,64 @@ export enum RecipeDetailScreens {
 
 export type RecipeDetailsTabParamsList = {
   Ingredients: RecipeIngredientsProps;
-  Method: undefined;
+  Method: RecipeMethodsProps;
 };
 
 export const RecipeDetails: React.FC<RecipeDetailsProps> = ({
   id,
   navigation,
+  Firestore,
 }) => {
   const [recipe, setRecipe] = useState<RecipeDetailsFields>();
+  const [loading, setLoading] = useState(true);
+  const [showSnackbar, setShowSnackbar] = useState(false);
+  const authContext = useContext(AuthContext);
   const Tab = createMaterialTopTabNavigator<RecipeDetailsTabParamsList>();
 
+  const getRecipeFromFirestore = () => {
+    if (authContext.User) {
+      const recipesRef = firebase.default.firestore().collection("recipes");
+      recipesRef
+        .where("authorId", "==", authContext.User.id)
+        .where("recipe.id", "==", id)
+        .get()
+        .then((snapshot) => {
+          snapshot.forEach((doc) => {
+            const data: RecipeDetailsFields = {
+              ...doc.data().recipe,
+            };
+            setRecipe(data);
+          });
+        })
+        .catch((err) => console.log(err));
+    }
+  };
+
   useEffect(() => {
-    axios.get(`/recipes/${id}/information`).then((response) => {
-      setRecipe(response.data);
-    });
+    if (Firestore) {
+      getRecipeFromFirestore();
+    } else {
+      axios.get(`/recipes/${id}/information`).then((response) => {
+        setRecipe(response.data);
+        setLoading(false);
+      });
+    }
   }, []);
 
   useLayoutEffect(() => {
-    navigation.setOptions({
-      headerRight: () => <Button onPress={() => console.log(id)}>test</Button>,
-    });
-  }, []);
+    if (recipe !== undefined) {
+      navigation.setOptions({
+        headerRight: () => (
+          <SaveRecipeButton Recipe={recipe} SetShowSnackbar={setShowSnackbar} />
+        ),
+      });
+    }
+  }, [loading]);
 
   if (recipe === undefined) {
     return <ActivityIndicator animating={true} color={Colors.red800} />;
   }
+
   return (
     <>
       <Card>
@@ -94,6 +140,9 @@ export const RecipeDetails: React.FC<RecipeDetailsProps> = ({
           {() => <RecipeMethod Method={recipe.analyzedInstructions[0].steps} />}
         </Tab.Screen>
       </Tab.Navigator>
+      <Snackbar visible={showSnackbar} onDismiss={() => setShowSnackbar(false)}>
+        Success!
+      </Snackbar>
     </>
   );
 };
