@@ -16,7 +16,7 @@ export const RecipeIngredients: React.FC<RecipeIngredientsProps> = ({
       renderItem={({ item, index, separators }) => (
         <Ingredient originalString={item.originalString} id={item.id} />
       )}
-      keyExtractor={(item) => item.id.toString()}
+      keyExtractor={(item, index) => index.toString()}
     />
   );
 };

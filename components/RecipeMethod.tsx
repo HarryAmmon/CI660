@@ -18,7 +18,7 @@ export const RecipeMethod: React.FC<RecipeMethodsProps> = ({ Method }) => {
       renderItem={({ item, index, separators }) => (
         <Stage step={item.step} number={item.number.toString()} />
       )}
-      keyExtractor={(item) => item.number.toString()}
+      keyExtractor={(item, index) => index.toString()}
     />
   );
 };

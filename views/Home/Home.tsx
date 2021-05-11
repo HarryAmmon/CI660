@@ -99,7 +99,7 @@ export const Home: React.FC<HomeProps> = ({ User }) => {
           <FlatList
             data={entities}
             renderItem={renderEntity}
-            keyExtractor={(item) => item.id}
+            keyExtractor={(item, index) => index.toString()}
             removeClippedSubviews={true}
           />
         </View>

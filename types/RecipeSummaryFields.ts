@@ -1,7 +1,7 @@
 export interface RecipeSummaryFields {
   id: number;
+  authorId?: string;
   title: string;
-  summary: string;
   image: string;
   imageType: string;
 }

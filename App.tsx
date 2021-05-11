@@ -19,10 +19,12 @@ import { AuthContext } from "./services/AuthContext";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import axios from "axios";
 import { RECIPE_API_KEY } from "@env";
+import { RecipeSummaryFields } from "./types/RecipeSummaryFields";
 
 axios.defaults.baseURL = "https://api.spoonacular.com/";
 axios.defaults.params = {};
 axios.defaults.params["apiKey"] = RECIPE_API_KEY;
+RECIPE_API_KEY;
 RECIPE_API_KEY;
 
 LogBox.ignoreLogs(["Setting a timer"]);
@@ -30,6 +32,7 @@ export enum AppScreens {
   Home = "Home",
   Login = "Login",
   Registration = "Registration",
+  Saved = "Saved",
 }
 
 export type StackParamsList = {
@@ -40,6 +43,7 @@ export type StackParamsList = {
 export type TabParamsList = {
   Home: HomeProps;
   Feed: RecipeFeedProps;
+  Saved: undefined;
 };
 
 const Stack = createStackNavigator<StackParamsList>();
@@ -50,6 +54,8 @@ export default function App() {
   const [user, setUser] = useState<
     firebase.default.firestore.DocumentData | undefined
   >();
+
+  const [recipes, setRecipes] = useState<RecipeSummaryFields[]>();
 
   useEffect(() => {
     const usersRef = firebase.default.firestore().collection("users");
@@ -83,7 +89,12 @@ export default function App() {
         {user ? (
           <Tab.Navigator initialRouteName="Feed">
             <Tab.Screen name="Home">{() => <Home User={user} />}</Tab.Screen>
-            <Tab.Screen name="Feed">{(props) => <RecipeFeedTab />}</Tab.Screen>
+            <Tab.Screen name="Feed">
+              {() => <RecipeFeedTab Firestore={false} />}
+            </Tab.Screen>
+            <Tab.Screen name="Saved">
+              {() => <RecipeFeedTab Firestore />}
+            </Tab.Screen>
           </Tab.Navigator>
         ) : (
           <Stack.Navigator initialRouteName="Login">
