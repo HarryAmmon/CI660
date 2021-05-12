@@ -1,12 +1,17 @@
 import { createStackNavigator } from "@react-navigation/stack";
-import React, { useContext, useState } from "react";
-import { View } from "react-native";
-import { Chip } from "react-native-paper";
+import React, { useContext, useReducer, useState } from "react";
+import { ScrollView, View } from "react-native";
+import { Chip, List } from "react-native-paper";
 import { SelectChips, TextField } from "../../components/forms";
+import { Ingredients } from "../../components/forms/Ingredients/Ingredients";
 import { AuthContext } from "../../services/AuthContext";
 import { CreateRecipeContext } from "../../services/CreateRecipeContext";
-import { AnalyzedInstructions, IngredientFields } from "../../types";
-
+import {
+  AnalyzedInstructions,
+  IngredientFields,
+  IngredientsActions,
+} from "../../types";
+import { IngredientReducer } from "../../services/IngredientReducer";
 export interface CreateRecipeTabProps {}
 
 export enum CreateRecipeScreens {
@@ -32,7 +37,11 @@ export const CreateRecipeTab: React.FC<CreateRecipeTabProps> = () => {
   const [economical, setEconomical] = useState(false);
   const [popular, setPopular] = useState(false);
   const [sustainable, setSustainable] = useState(false);
-  const [ingredients, setIngredients] = useState<IngredientFields[]>([]);
+  const initialIngredients: IngredientFields[] = [];
+  const [ingredients, setIngredients] = useReducer(
+    IngredientReducer,
+    initialIngredients
+  );
   const [instructions, setInstructions] = useState<AnalyzedInstructions[]>([]);
   const [authorId] = useState(
     authContext.User ? authContext.User.id : undefined
@@ -73,14 +82,17 @@ export const CreateRecipeTab: React.FC<CreateRecipeTabProps> = () => {
               authorId,
             }}
           >
-            <View>
+            <ScrollView>
               <TextField
                 value={title}
                 setValue={setTitle}
                 label="Recipe Title"
               />
               <SelectChips />
-            </View>
+              <List.Accordion title="Ingredients" id="1">
+                <Ingredients />
+              </List.Accordion>
+            </ScrollView>
           </CreateRecipeContext.Provider>
         )}
       </Stack.Screen>

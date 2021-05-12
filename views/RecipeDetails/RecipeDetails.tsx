@@ -1,11 +1,5 @@
 import axios from "axios";
-import React, {
-  useContext,
-  useEffect,
-  useLayoutEffect,
-  useReducer,
-  useState,
-} from "react";
+import React, { useContext, useEffect, useLayoutEffect, useState } from "react";
 import { ActivityIndicator, Card, Colors, Snackbar } from "react-native-paper";
 import { RecipeDetailsFields } from "../../types/RecipeDetailsFields";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";

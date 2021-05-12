@@ -1,4 +1,5 @@
 import React, { SetStateAction } from "react";
+import { IngredientsActions } from "./IngredientsActions";
 import {
   AnalyzedInstructions,
   IngredientFields,
@@ -9,7 +10,7 @@ export interface CreateRecipeContextFields extends RecipeDetailsFields {
   setAnalyzedInstructions: React.Dispatch<
     SetStateAction<AnalyzedInstructions[]>
   >;
-  setExtendedIngredients: React.Dispatch<SetStateAction<IngredientFields[]>>;
+  setExtendedIngredients: React.Dispatch<IngredientsActions>;
   setVegetarian: React.Dispatch<SetStateAction<boolean>>;
   setVegan: React.Dispatch<SetStateAction<boolean>>;
   setGlutenFree: React.Dispatch<SetStateAction<boolean>>;
