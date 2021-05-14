@@ -11,6 +11,8 @@ import {
   RegistrationProps,
   RecipeFeedProps,
   RecipeFeedTab,
+  CreateRecipeTab,
+  CreateRecipeTabProps,
 } from "./views";
 import { Text } from "react-native";
 import { firebase } from "./firebase/config";
@@ -33,6 +35,7 @@ export enum AppScreens {
   Login = "Login",
   Registration = "Registration",
   Saved = "Saved",
+  Create = "Create",
 }
 
 export type StackParamsList = {
@@ -43,7 +46,8 @@ export type StackParamsList = {
 export type TabParamsList = {
   Home: HomeProps;
   Feed: RecipeFeedProps;
-  Saved: undefined;
+  Saved: RecipeFeedProps;
+  Create: CreateRecipeTabProps;
 };
 
 const Stack = createStackNavigator<StackParamsList>();
@@ -88,13 +92,13 @@ export default function App() {
       <AuthContext.Provider value={{ User: user, SetUser: setUser }}>
         {user ? (
           <Tab.Navigator initialRouteName="Feed">
-            <Tab.Screen name="Home">{() => <Home User={user} />}</Tab.Screen>
             <Tab.Screen name="Feed">
               {() => <RecipeFeedTab Firestore={false} />}
             </Tab.Screen>
             <Tab.Screen name="Saved">
               {() => <RecipeFeedTab Firestore />}
             </Tab.Screen>
+            <Tab.Screen name="Create">{() => <CreateRecipeTab />}</Tab.Screen>
           </Tab.Navigator>
         ) : (
           <Stack.Navigator initialRouteName="Login">
