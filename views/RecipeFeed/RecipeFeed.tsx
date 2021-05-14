@@ -17,15 +17,21 @@ export const RecipeFeed: React.FC<RecipeFeedProps> = ({ Firestore }) => {
   const authContext = useContext(AuthContext);
 
   const getRecipesFromAPI = () => {
-    axios
-      .get(`recipes/random?number=7`)
-      .then((response) => {
-        setRecipes(response.data.recipes);
-      })
-      .catch((error: AxiosError) => {
-        console.log(error);
-        console.log("err");
-      });
+    if (recipes === undefined || recipes.length <= 30) {
+      axios
+        .get(`recipes/random?number=7`)
+        .then((response) => {
+          if (recipes === undefined) {
+            setRecipes([...response.data.recipes]);
+          } else {
+            setRecipes([...recipes, ...response.data.recipes]);
+          }
+        })
+        .catch((error: AxiosError) => {
+          console.log(error);
+          console.log("err");
+        });
+    }
   };
 
   const getRecipesFromFirestore = () => {
@@ -80,6 +86,11 @@ export const RecipeFeed: React.FC<RecipeFeedProps> = ({ Firestore }) => {
       keyExtractor={(item, index) => index.toString()}
       onRefresh={refreshList}
       refreshing={refreshing}
+      onScroll={() => {
+        if (!Firestore) {
+          getRecipesFromAPI();
+        }
+      }}
     />
   );
 };

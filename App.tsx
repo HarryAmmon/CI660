@@ -22,6 +22,9 @@ import { createMaterialBottomTabNavigator } from "@react-navigation/material-bot
 import axios from "axios";
 import { RECIPE_API_KEY } from "@env";
 import { RecipeSummaryFields } from "./types/RecipeSummaryFields";
+import { IconButton } from "react-native-paper";
+import { IconSource } from "react-native-paper/lib/typescript/components/Icon";
+import { title } from "process";
 
 axios.defaults.baseURL = "https://api.spoonacular.com/";
 axios.defaults.params = {};
@@ -89,14 +92,31 @@ export default function App() {
     <NavigationContainer>
       <AuthContext.Provider value={{ User: user, SetUser: setUser }}>
         {user ? (
-          <Tab.Navigator initialRouteName="Feed">
-            <Tab.Screen name="Feed">
+          <Tab.Navigator
+            initialRouteName="Feed"
+            screenOptions={({ route }) => ({
+              tabBarIcon: ({ focused, color }) => {
+                let iconName: IconSource = "";
+                if (route.name === "Feed") {
+                  iconName = focused ? "home-variant" : "home-variant-outline";
+                } else if (route.name === "Saved") {
+                  iconName = focused ? "content-save" : "content-save-outline";
+                } else if (route.name === "Create") {
+                  iconName = focused ? "pencil" : "pencil-outline";
+                }
+                return <IconButton icon={iconName} color={color} />;
+              },
+            })}
+          >
+            <Tab.Screen name="Feed" options={{ title: "" }}>
               {() => <RecipeFeedTab Firestore={false} />}
             </Tab.Screen>
-            <Tab.Screen name="Saved">
+            <Tab.Screen name="Saved" options={{ title: "" }}>
               {() => <RecipeFeedTab Firestore />}
             </Tab.Screen>
-            <Tab.Screen name="Create">{() => <CreateRecipeTab />}</Tab.Screen>
+            <Tab.Screen name="Create" options={{ title: "" }}>
+              {() => <CreateRecipeTab />}
+            </Tab.Screen>
           </Tab.Navigator>
         ) : (
           <Stack.Navigator initialRouteName="Login">
