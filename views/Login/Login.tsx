@@ -16,7 +16,8 @@ export const Login: React.FC<LoginProps> = ({ navigation }) => {
   const [password, setPassword] = useState("");
 
   const onFooterLinkPress = () => {
-    navigation.navigate("Registration", { navigation });
+    navigation.canGoBack();
+    navigation.navigate("Registration", { navigation: navigation });
   };
 
   const onLoginPress = () => {

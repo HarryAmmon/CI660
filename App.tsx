@@ -60,11 +60,8 @@ export default function App() {
   const [user, setUser] =
     useState<firebase.default.firestore.DocumentData | undefined>();
 
-  const [recipes, setRecipes] = useState<RecipeSummaryFields[]>();
-
   useEffect(() => {
     const usersRef = firebase.default.firestore().collection("users");
-    console.log("Application running");
     firebase.default.auth().onAuthStateChanged((user) => {
       if (user) {
         usersRef
@@ -104,7 +101,9 @@ export default function App() {
         ) : (
           <Stack.Navigator initialRouteName="Login">
             <Stack.Screen name="Login" component={Login} />
-            <Stack.Screen name="Registration" component={Registration} />
+            <Stack.Screen name="Registration">
+              {(props) => <Registration {...props} />}
+            </Stack.Screen>
           </Stack.Navigator>
         )}
       </AuthContext.Provider>

@@ -1,7 +1,6 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import React from "react";
-import { RemoveRecipeButton } from "../../components";
-import { RecipeSummaryFields } from "../../types/RecipeSummaryFields";
+import { LogoutButton } from "../../components";
 import {
   RecipeDetails,
   RecipeDetailsProps,
@@ -29,7 +28,13 @@ export const RecipeFeedTab: React.FC<RecipeFeedTabProps> = ({ Firestore }) => {
     <Stack.Navigator>
       {Firestore ? (
         <>
-          <Stack.Screen name="Feed" options={{ headerTitle: "Saved" }}>
+          <Stack.Screen
+            name="Feed"
+            options={{
+              headerTitle: "Saved",
+              headerRight: () => <LogoutButton />,
+            }}
+          >
             {() => <RecipeFeed Firestore={Firestore} />}
           </Stack.Screen>
           <Stack.Screen name="Details">
@@ -44,7 +49,10 @@ export const RecipeFeedTab: React.FC<RecipeFeedTabProps> = ({ Firestore }) => {
         </>
       ) : (
         <>
-          <Stack.Screen name="Feed">
+          <Stack.Screen
+            name="Feed"
+            options={{ headerRight: () => <LogoutButton /> }}
+          >
             {() => <RecipeFeed Firestore={Firestore} />}
           </Stack.Screen>
           <Stack.Screen name="Details">

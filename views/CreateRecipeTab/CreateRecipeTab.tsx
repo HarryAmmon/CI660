@@ -15,6 +15,7 @@ import {
 import { IngredientReducer } from "../../services/IngredientReducer";
 import { StepReducer } from "../../services/StepReducer";
 import { firebase } from "../../firebase/config";
+import { LogoutButton } from "../../components";
 
 export interface CreateRecipeTabProps {}
 
@@ -73,7 +74,13 @@ export const CreateRecipeTab: React.FC<CreateRecipeTabProps> = () => {
 
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Create" options={{ title: "Create Recipe" }}>
+      <Stack.Screen
+        name="Create"
+        options={{
+          title: "Create Recipe",
+          headerRight: () => <LogoutButton />,
+        }}
+      >
         {() => (
           <CreateRecipeContext.Provider
             value={{
