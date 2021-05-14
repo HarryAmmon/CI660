@@ -28,6 +28,8 @@ axios.defaults.params = {};
 axios.defaults.params["apiKey"] = RECIPE_API_KEY;
 RECIPE_API_KEY;
 RECIPE_API_KEY;
+RECIPE_API_KEY;
+console.log(RECIPE_API_KEY);
 
 LogBox.ignoreLogs(["Setting a timer"]);
 export enum AppScreens {
@@ -55,9 +57,8 @@ const Tab = createMaterialBottomTabNavigator<TabParamsList>();
 
 export default function App() {
   const [loading, setLoading] = useState(true);
-  const [user, setUser] = useState<
-    firebase.default.firestore.DocumentData | undefined
-  >();
+  const [user, setUser] =
+    useState<firebase.default.firestore.DocumentData | undefined>();
 
   const [recipes, setRecipes] = useState<RecipeSummaryFields[]>();
 
