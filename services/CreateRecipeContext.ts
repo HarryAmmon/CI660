@@ -4,6 +4,7 @@ import { CreateRecipeContextFields } from "../types/CreateRecipeContext";
 export const CreateRecipeContext = createContext<CreateRecipeContextFields>({
   title: "",
   analyzedInstructions: [],
+  steps: [],
   cheap: false,
   dairyFree: false,
   glutenFree: false,
@@ -15,7 +16,7 @@ export const CreateRecipeContext = createContext<CreateRecipeContextFields>({
   vegetarian: false,
   veryHealthy: false,
   veryPopular: false,
-  setAnalyzedInstructions: () => {},
+  setSteps: () => {},
   setCheap: () => {},
   setDairyFree: () => {},
   setExtendedIngredients: () => {},
@@ -26,6 +27,5 @@ export const CreateRecipeContext = createContext<CreateRecipeContextFields>({
   setVegan: () => {},
   setVegetarian: () => {},
   sustainable: false,
-  setId: () => {},
   setTitle: () => {},
 });

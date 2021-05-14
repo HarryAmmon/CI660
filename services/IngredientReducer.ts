@@ -21,6 +21,17 @@ export const IngredientReducer = (
         };
       }
       return [...State];
+    case "DELETE_INGREDIENTS":
+      const toDelete = State.findIndex((x) => x.id === Actions.payload.id);
+      if (toDelete !== -1) {
+        State.splice(toDelete, 1);
+        return [...State];
+      } else {
+        return [...State];
+      }
+    case "CLEAR_STATE":
+      State = [];
+      return [...State];
     default:
       return [...State];
   }

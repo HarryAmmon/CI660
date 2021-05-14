@@ -1,15 +1,11 @@
 import React, { SetStateAction } from "react";
 import { IngredientsActions } from "./IngredientsActions";
-import {
-  AnalyzedInstructions,
-  IngredientFields,
-  RecipeDetailsFields,
-} from "./RecipeDetailsFields";
+import { RecipeDetailsFields, StepFields } from "./RecipeDetailsFields";
+import { StepsActions } from "./StepsActions";
 
 export interface CreateRecipeContextFields extends RecipeDetailsFields {
-  setAnalyzedInstructions: React.Dispatch<
-    SetStateAction<AnalyzedInstructions[]>
-  >;
+  setSteps: React.Dispatch<StepsActions>;
+  steps: StepFields[];
   setExtendedIngredients: React.Dispatch<IngredientsActions>;
   setVegetarian: React.Dispatch<SetStateAction<boolean>>;
   setVegan: React.Dispatch<SetStateAction<boolean>>;
@@ -20,5 +16,4 @@ export interface CreateRecipeContextFields extends RecipeDetailsFields {
   setPopular: React.Dispatch<SetStateAction<boolean>>;
   setSustainable: React.Dispatch<SetStateAction<boolean>>;
   setTitle: React.Dispatch<SetStateAction<string>>;
-  setId: React.Dispatch<SetStateAction<number>>;
 }
