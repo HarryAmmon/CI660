@@ -5,7 +5,6 @@ import { useNavigation } from "@react-navigation/native";
 
 export interface RecipeSummaryProps {
   Recipe: RecipeSummaryFields;
-  Firestore: boolean;
 }
 
 export const RecipeSummary: React.FC<RecipeSummaryProps> = ({ Recipe }) => {

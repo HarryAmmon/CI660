@@ -1,16 +1,26 @@
 import axios, { AxiosError } from "axios";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { FlatList } from "react-native";
 import { RecipeSummary } from "../../components";
 import { AuthContext } from "../../services/AuthContext";
 import { RecipeSummaryFields } from "../../types/RecipeSummaryFields";
 import { firebase } from "../../firebase/config";
+import { StackNavigationProp } from "@react-navigation/stack";
+import {
+  RecipeFeedScreens,
+  RecipeFeedStackViews,
+} from "../RecipeFeedTab/RecipeFeedTab";
+import { useFocusEffect, useIsFocused } from "@react-navigation/core";
 
 export interface RecipeFeedProps {
   Firestore: boolean;
+  navigation: StackNavigationProp<RecipeFeedStackViews, RecipeFeedScreens.Feed>;
 }
 
-export const RecipeFeed: React.FC<RecipeFeedProps> = ({ Firestore }) => {
+export const RecipeFeed: React.FC<RecipeFeedProps> = ({
+  Firestore,
+  navigation,
+}) => {
   const [recipes, setRecipes] = useState<RecipeSummaryFields[]>();
   const [refreshing, setRefreshing] = useState(false);
   const authContext = useContext(AuthContext);
@@ -62,6 +72,13 @@ export const RecipeFeed: React.FC<RecipeFeedProps> = ({ Firestore }) => {
     Firestore ? getRecipesFromFirestore() : getRecipesFromAPI();
     setRefreshing(false);
   };
+  const isFocused = useIsFocused();
+
+  useEffect(() => {
+    if (Firestore) {
+      refreshList();
+    }
+  }, [isFocused, Firestore]);
 
   return (
     <FlatList

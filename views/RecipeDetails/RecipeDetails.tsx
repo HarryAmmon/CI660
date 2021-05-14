@@ -9,8 +9,9 @@ import {
   RecipeIngredientsProps,
   RecipeMethod,
   RecipeMethodsProps,
+  RemoveRecipeButton,
 } from "../../components";
-import { View } from "react-native";
+import { View, Text } from "react-native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import {
   RecipeFeedScreens,
@@ -49,6 +50,7 @@ export const RecipeDetails: React.FC<RecipeDetailsProps> = ({
   const [recipe, setRecipe] = useState<RecipeDetailsFields>();
   const [loading, setLoading] = useState(true);
   const [showSnackbar, setShowSnackbar] = useState(false);
+  const [deleteSuccess, setDeleteSuccess] = useState(false);
   const authContext = useContext(AuthContext);
   const Tab = createMaterialTopTabNavigator<RecipeDetailsTabParamsList>();
 
@@ -74,6 +76,7 @@ export const RecipeDetails: React.FC<RecipeDetailsProps> = ({
   useEffect(() => {
     if (Firestore) {
       getRecipeFromFirestore();
+      setLoading(false);
     } else {
       axios.get(`/recipes/${id}/information`).then((response) => {
         setRecipe(response.data);
@@ -84,13 +87,37 @@ export const RecipeDetails: React.FC<RecipeDetailsProps> = ({
 
   useLayoutEffect(() => {
     if (recipe !== undefined) {
-      navigation.setOptions({
-        headerRight: () => (
-          <SaveRecipeButton Recipe={recipe} SetShowSnackbar={setShowSnackbar} />
-        ),
-      });
+      if (Firestore) {
+        navigation.setOptions({
+          headerRight: () => (
+            <RemoveRecipeButton
+              id={recipe.id}
+              setShowSnackbar={setShowSnackbar}
+              setDeleteSuccess={setDeleteSuccess}
+            >
+              Remove
+            </RemoveRecipeButton>
+          ),
+        });
+      } else {
+        navigation.setOptions({
+          headerRight: () => (
+            <SaveRecipeButton
+              Recipe={recipe}
+              SetShowSnackbar={setShowSnackbar}
+            />
+          ),
+        });
+      }
     }
-  }, [loading]);
+  }, [loading, recipe]);
+
+  useEffect(() => {
+    if (deleteSuccess) {
+      setDeleteSuccess(false);
+      navigation.goBack();
+    }
+  }, [deleteSuccess]);
 
   if (recipe === undefined) {
     return <ActivityIndicator animating={true} color={Colors.red800} />;
